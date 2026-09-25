@@ -1,0 +1,56 @@
+:root {
+  --charcoal: #211a14;
+  --charcoal-soft: #2e251d;
+  --cream: #fbf1e1;
+  --paper: #fff8ec;
+  --mustard: #e3a008;
+  --tomato: #c1401f;
+  --pickle: #6e7b3f;
+  --text-dark: #211a14;
+  --text-muted: #6b5f52;
+
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.05;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}

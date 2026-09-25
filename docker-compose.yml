@@ -1,0 +1,47 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: burger_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-burger_db}
+      MYSQL_USER: ${MYSQL_USER:-burger_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-burger_pass}
+    ports:
+      - "3307:3306"
+    volumes:
+      - burger_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-rootpass}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: burger_backend
+    restart: unless-stopped
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-burger_db}
+      MYSQL_USER: ${MYSQL_USER:-burger_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-burger_pass}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    container_name: burger_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  burger_mysql_data:
