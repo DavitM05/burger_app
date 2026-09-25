@@ -1,7 +1,6 @@
 # 🍔 Burger House
 
-A full-stack burger ordering site: browse a menu, build a cart, and place an
-order.
+A full-stack burger ordering site:
 
 - **Frontend:** React (Create React App), served in production by nginx
 - **Backend:** FastAPI (Python), SQLAlchemy ORM
