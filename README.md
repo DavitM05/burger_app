@@ -112,3 +112,4 @@ npm start   # proxies /api to http://localhost:8000, see package.json "proxy"
 - The MySQL data persists in the `burger_mysql_data` Docker volume across
   restarts.
 # burger_app
+# iam_s3
